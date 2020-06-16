@@ -24,7 +24,9 @@ namespace CaoLendario.Models
         }
         public Adotante ObterAdotante(int id)
         {
-            var adotante = context.Adotantes.FirstOrDefault();
+            var adotante = context.Adotantes
+            .Include(f => f.Fabricante)
+           .FirstOrDefault(p => p.ProdutoID == id);
             return adotante;
         }
         public void Edit(Adotante adotante)
